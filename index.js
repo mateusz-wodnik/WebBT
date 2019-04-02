@@ -23,16 +23,13 @@ button.addEventListener('click', function(event) {
 			device.addEventListener('gattserverdisconnected', () => console.log('REEEEEEEEEEEEEEEEEEE'));
 			return device.gatt.connect();
 		})
+		.catch(err => console.error('connection', err))
 		.then(server => {
 			serverContainer.innerHTML = `
 			Server \n
 			Connected: ${server.connected ? 'true' : 'false'}\n
 			`;
 			console.log('server', server);
-			return server.getPrimaryService('0000180a-0000-1000-8000-00805f9b34fb');
-		})
-		.then(service => {
-			console.log(service)
 		})
 		.catch(err => console.error('server', err))
 
